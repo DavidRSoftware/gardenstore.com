@@ -1,0 +1,23 @@
+{
+  "name": "gardenstore3.com",
+  "version": "1.0.0",
+  "description": "Demonstrates the use of AngularJS directives and expressions in a business website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidRSoftware/gardenstore2.com.git"
+  },
+  "author": "David Rosen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidRSoftware/gardenstore2.com/issues"
+  },
+  "homepage": "https://github.com/DavidRSoftware/gardenstore2.com#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "path": "^0.12.7"
+  }
+}

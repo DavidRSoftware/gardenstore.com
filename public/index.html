@@ -13,7 +13,7 @@
     'https://davidrosen.herokuapp.com/','https://github.com/DavidRSoftware/davidrosen.com','https://two-player-tic-tac-toe.herokuapp.com/','https://github.com/DavidRSoftware/Tic-Tac-Toe']">
 
     <div class="top-banner">
-      <img src="banner.png" alt="banner">
+      <img src="images/banner.png" alt="banner">
     </div>
 
     <div class="navigator">
@@ -30,7 +30,7 @@
 
     <div class="pictures-div" ng-show="showPictures">
       <h1 class="title">Picture Gallery</h1>
-      <img ng-repeat="i in getNumber(12) track by $index" src="rose-flower-blossom-bloom-39517.jpeg" alt="rose picture" class="gallery-picture">
+      <img ng-repeat="i in getNumber(12) track by $index" src="images/rose-flower-blossom-bloom-39517.jpeg" alt="rose picture" class="gallery-picture">
     </div>
 
     <div class="order-div" ng-show="showOrder">
@@ -72,6 +72,7 @@
       </div>
     </div>
   </div>
+
   <script>
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope, $http) {
