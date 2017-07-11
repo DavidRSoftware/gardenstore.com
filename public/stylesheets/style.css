@@ -1,0 +1,66 @@
+html {
+  background-color: sandybrown;
+}
+
+.nav-button {
+  margin-top: 10px;
+  margin-left: 57px;
+  padding: 5px;
+  background-color: saddlebrown;
+  border-color: goldenrod;
+  color: navajowhite;
+  cursor: pointer;
+}
+
+.navigator {
+  text-align: center;
+}
+
+.top-banner {
+  text-align: center;
+}
+
+.gallery-picture {
+  width: 300px;
+  height: 300px;
+  margin: 50px;
+}
+
+.title {
+  font-size: 60px;
+  padding: 20px;
+  background-color: saddlebrown;
+  color: navajowhite;
+  text-align: center;
+  font-family: arial;
+  border: 4px goldenrod solid;
+  width: 332px;
+  margin: 30px auto;
+}
+
+.pictures-div {
+  text-align: center;
+}
+
+.links-div {
+  margin-left: 90px;
+}
+
+.home-div {
+  margin-left: 90px;
+  margin-right: 90px;
+}
+
+.select-order-div {
+  margin: 0 auto;
+}
+
+.checkout-div {
+  text-align: center;
+}
+
+.button-div {
+  text-align: center;
+  margin-top: 25px;
+  margin-right: 100px;
+}

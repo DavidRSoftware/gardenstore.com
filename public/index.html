@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Garden Store</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+  <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<body>
+  <div ng-app="myApp" ng-controller="myCtrl" ng-init="linkArray=['https://angularjsgardenstore.herokuapp.com/index.html','https://github.com/DavidRSoftware/gardenstore.com',
+    'https://davidrosen.herokuapp.com/','https://github.com/DavidRSoftware/davidrosen.com','https://two-player-tic-tac-toe.herokuapp.com/','https://github.com/DavidRSoftware/Tic-Tac-Toe']">
+
+    <div class="top-banner">
+      <img src="banner.png" alt="banner">
+    </div>
+
+    <div class="navigator">
+      <button type="button" ng-click="showDiv('home')" class="nav-button">Home</button>
+      <button type="button" ng-click="showDiv('pictures')" class="nav-button">Pictures</button>
+      <button type="button" ng-click="showDiv('order')" class="nav-button">Order Online</button>
+      <button type="button" ng-click="showDiv('links')" class="nav-button">Links</button>
+    </div>
+
+    <div class="showHome" ng-show="showHome">
+      <h1 class="title">Home Page</h1>
+      <div filler-directive class="home-div"></div>
+    </div>
+
+    <div class="pictures-div" ng-show="showPictures">
+      <h1 class="title">Picture Gallery</h1>
+      <img ng-repeat="i in getNumber(12) track by $index" src="rose-flower-blossom-bloom-39517.jpeg" alt="rose picture" class="gallery-picture">
+    </div>
+
+    <div class="order-div" ng-show="showOrder">
+      <h1 class="title">Order Online</h1>
+      <div class="select-order-div" ng-show="showSelectOrder">
+        <table border="1" width="75%" style="margin: 0px auto;">
+          <tr>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Quantity</th>
+          </tr>
+
+          <tr ng-repeat="elem in products">
+            <td>{{elem.name}}</td>
+            <td>{{elem.price}}</td>
+            <td><input type="text" size="5" maxlength="8" value="0"></td>
+          </tr>
+        </table>
+        <div class="button-div">
+          <button type="button" ng-click="switchOrderDivs()" class="nav-button">Go To Checkout</button>
+        </div>
+      </div>
+      <div class="checkout-div" ng-show="showCheckout">
+        <h1>Thank you for your order</h1>
+        <div class="button-div">
+          <button type="button" ng-click="switchOrderDivs()" class="nav-button">Modify Order</button>
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="showLinks">
+      <h1 class="title">Links</h1>
+      <div class="links-div">
+        <ul>
+          <li ng-repeat="link in linkArray">
+            <h3><a href="{{link}}" target="_blank">{{link}}</a></h3>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+      //sets which sections of the webite are visible when the website is loaded
+      $scope.showHome = true;
+      $scope.showPictures = false;
+      $scope.showOrder = false;
+      $scope.showLinks = false;
+      $scope.showSelectOrder = true;
+      $scope.showCheckout = false;
+
+      //http request for the text of the home section of the website
+      $http({
+        method: "GET",
+        url: "filler.html"
+      }).then(function mySuccess(response) {
+        $scope.filler = response.data;
+      }, function myError(response) {
+        $scope.filler = "Cannot load text for home page.";
+      });
+
+      //is called when one of the navigations buttons are clicked
+      $scope.showDiv = function(toShow) {
+        $scope.showHome = false;
+        $scope.showPictures = false;
+        $scope.showOrder = false;
+        $scope.showLinks = false;
+        if (toShow == 'home') {
+          $scope.showHome = true;
+        } else if (toShow == 'pictures') {
+          $scope.showPictures = true;
+        } else if (toShow == 'order') {
+          $scope.showOrder = true;
+        } else if (toShow == 'links') {
+          $scope.showLinks = true;
+        }
+      }
+
+      //used to load the pictures in the picture gallery
+      $scope.getNumber = function(num) {
+        return new Array(num);
+      }
+
+      //used to switch betweem the two sections that belong to the order section
+      $scope.switchOrderDivs = function() {
+        $scope.showSelectOrder = !$scope.showSelectOrder;
+        $scope.showCheckout = !$scope.showCheckout;
+      }
+
+      //array of the products that are available for purchase online
+      $scope.products = [{
+          name: 'Roses',
+          price: '$20'
+        },
+        {
+          name: 'Cucumber Seeds',
+          price: '$5'
+        },
+        {
+          name: 'Watermelon Seeds',
+          price: '$5'
+        },
+        {
+          name: 'Small Flower Pot',
+          price: '$10'
+        }
+      ];
+    });
+
+    //loads the text that has been retrieved using http to the home section
+    app.directive('fillerDirective', function() {
+      return {
+        template: '<p>{{filler}}</p><p>{{filler}}</p><p>{{filler}}</p><p>{{filler}}</p>'
+      };
+    });
+  </script>
+</body>
+
+</html>
